@@ -1,0 +1,123 @@
+<div class="content">
+  <div class="book-detail page">
+    <div class="container">
+      <div class="primary-block clearfix">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="book-cover book detail-book-cover">
+              <img style="margin-top: 50px;" src="assets/images/book/{{bookById.bookImage}}" class="img-responsive" [attr.data-echo]="bookById.bookImage"
+                   width="303px" height="412px" alt="">
+              <div class="fade"></div>
+            </div><!-- /.book-cover -->
+          </div><!-- /.col -->
+
+          <div class="col-sm-8">
+            <div class="book-detail-header">
+              <h2 style="margin-top: 50px; color: #270082" class="book-title">{{bookById.bookName}} - {{bookById.bookAuthorId.authorName}}</h2>
+              <p style="color: #270082">Số lượng: <span>{{bookById.bookQuantity}}</span></p>
+            </div><!-- /.book-detail-header -->
+
+            <div class="book-detail-body">
+              <p style="color: #270082">Mã sản phẩm: <span style="color: black">{{bookById.bookCode}}</span></p>
+              <p style="color: #270082">Tên tác giả: <span style="color: black">{{bookById.bookAuthorId.authorName}}</span></p>
+              <p style="color: #270082">Dịch giả: <span style="color: black">{{bookById.bookTranslator}}</span></p>
+              <p style="color: #270082">Số trang: <span style="color: black">{{bookById.bookTotalPage}}</span></p>
+              <p style="color: #270082">Kích thước: <span style="color: black">{{bookById.bookSize}}</span></p>
+              <p style="color: #270082">Ngày phát hành: <span style="color: black">{{bookById.bookPublishDate|date:'dd/MM/yyyy'}}</span></p>
+
+              <div class="detail-cart-button row clearfix">
+                <div class="pull-left col-md-5 col-sm-4 col-xs-12">
+                  <div class="detail-book-price">
+                    <span *ngIf="bookById.bookPromotionId.promotionId <= 1" class="price">{{bookById.bookPrice|currency:'VND'}}</span>
+                    <span *ngIf="bookById.bookPromotionId.promotionId > 1" class="price"><span style="text-decoration: line-through;" class="price-before-discount">{{bookById.bookPrice|currency:'VND'}}</span> {{bookById.bookPrice - bookById.bookPrice * bookById.bookPromotionId.promotionPercent / 100 | currency :'VND'}}</span>
+                  </div><!-- /.detail-book-price -->
+                </div><!-- /.pull-left -->
+
+                <div class="pull-right col-md-7 col-sm-6 col-xs-12">
+                  <div class="row product-actions">
+                    <a *ngIf="!isLoggedIn" routerLink="/cart" class="col-sm-6 btn btn-primary btn-addToCart" style="width: 163px; height: 39px;"><i
+                      class="icon-plus fa fa-plus-circle"></i>Thêm vào giỏ hàng</a>
+                    <a *ngIf="isLoggedIn" (click)="addBook(bookById)" class="col-sm-6 btn btn-primary btn-addToCart" style="width: 163px; height: 39px;"><i
+                      class="icon-plus fa fa-plus-circle"></i>Thêm vào giỏ hàng</a>
+                    <div class="quantity book-detail-quantity col-xs-4 col-lg-3">
+                      <div class="quantity-block">
+                        <div class="quant-input">
+<!--                          <div class="arrows">-->
+<!--                            <button class="arrow plus gradient" [disabled]="(quantityCart + bookQuantity) >= bookById.bookQuantity" (click)="addBookQuantity()"><span class="ir"></span></button>-->
+<!--                            <button class="arrow minus gradient" [disabled]="bookQuantity == 1"  (click)="subBookQuantity()">-->
+<!--                              <span class="ir"></span></button>-->
+<!--                          </div>&lt;!&ndash; /.arrows &ndash;&gt;-->
+                          <input style="width: 50px; margin-top: 4px" id="input-quantity" class="txt-quantity" type="text" (change)="getQuantity($event.target)" value="1"/>
+                        </div><!-- /.quant-input -->
+                      </div><!-- /.quantity-block -->
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div><!-- /.pull-right -->
+              </div><!-- /.detail-cart-button -->
+
+              <div class="clearfix"></div>
+
+              <div class="product-description">
+                <h4 style="color: #270082; margin-top: 50px">Giới thiệu sách</h4>
+                <p>{{bookById.bookContent}}</p>
+              </div><!-- /.product-description -->
+
+            </div><!-- /.book-detail-body -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.primary-block -->
+    </div><!-- /.container -->
+
+    <!-- ========================================= RELATE BOOKS MODULE ========================================= -->
+    <div class="container">
+      <div class="wow fadeInUp">
+        <div class="module block-relate-books module-block">
+          <div class="module-heading">
+            <h3 class="module-title" style="color: #270082">SÁCH CÙNG TÁC GIẢ</h3>
+          </div><!-- /.module-heading -->
+          <div class="module-body">
+            <div class="books">
+              <ngx-slick-carousel class="carousel"
+                                  #slickModal="slick-carousel"
+                                  [config]="slideConfig">
+                <div ngxSlickItem *ngFor="let bookAuthor of bookAuthorList" class="slide">
+                  <div class="book">
+                    <div class="sale-ribbon" *ngIf="bookAuthor.bookPromotionId.promotionId > 1">
+                      <div class="sale-ribbon-content">sale off</div>
+                    </div>
+                    <div class="book-cover">
+                      <div class="book-inner">
+                        <img [routerLink]="['/book/list',bookAuthor.bookId]" src="assets/images/book/{{bookAuthor.bookImage}}" width="193" height="261" alt="">
+                        <h3 class="book-title" style="width: 192px; font-size: 20px; height: 66px"><a>{{bookAuthor.bookName}} - {{bookAuthor.bookAuthorId.authorName}}</a></h3>
+                        <div class="fade"></div>
+                        <div class="book-price">
+                          <span *ngIf="bookAuthor.bookPromotionId.promotionId <= 1"
+                                class="price">{{bookAuthor.bookPrice|currency:'VND'}}</span>
+                          <span *ngIf="bookAuthor.bookPromotionId.promotionId > 1" class="price"><span
+                            class="price-before-discount">{{bookAuthor.bookPrice|currency:'VND'}}</span> {{bookAuthor.bookPrice - bookAuthor.bookPrice * bookAuthor.bookPromotionId.promotionPercent / 100 | currency :'VND'}}</span>
+                        </div><!-- /.book-price -->
+
+                        <div class="cart animate-effect">
+                          <div class="action">
+                            <a class="add-to-cart" href="detail.html" title="Add to Cart">
+                              <i class="icon icon-plus fa fa-plus-circle"></i>
+                            </a>
+                          </div><!-- /.action -->
+                        </div><!-- /.cart -->
+                      </div><!-- /.book-inner -->
+                    </div><!-- /.book-cover -->
+                  </div><!-- /.book -->
+                </div>
+              </ngx-slick-carousel>
+            </div><!-- /#new-carousel -->
+          </div><!-- /.books -->
+          <br>
+          <br>
+        </div><!-- /.module -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+    <!-- ========================================= RELATE BOOKS MODULE : END ========================================= -->
+  </div><!-- /.book-detail page -->
+</div>
+<notifier-container></notifier-container>
+

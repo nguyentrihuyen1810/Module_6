@@ -1,0 +1,67 @@
+<div class = "header">
+  <div class = "header1">
+    <div style="float: left">
+      <span style="margin-left: 200px"><a [routerLink]="['/']" style="text-decoration: none; color: #270082; font-size: 15px">GIỚI THIỆU</a></span>
+      <span style="margin-left: 30px">LỊCH SỬ GIAO DỊCH</span>
+      <span style="margin-left: 30px">KIỂM TRA ĐƠN HÀNG</span>
+    </div>
+    <div *ngIf="!isLoggedIn" style = "float: left; margin-left: 350px">
+      <span *ngIf="!isLoggedIn"><a [routerLink]="['/login']" style="text-decoration: none; color: #270082; font-size: 15px; float:left;">ĐĂNG NHẬP</a></span>
+      <span *ngIf="isLoggedIn"><a style="text-decoration: none; color: #270082; font-size: 15px">{{userName}}</a></span>
+      <span *ngIf="isLoggedIn"><a style="color: #270082" (click)="logout()">ĐĂNG XUẤT</a></span>
+    </div>
+  </div>
+
+  <div class="header2">
+    <img src="assets/images/logo/logo-removebg-preview.png">
+    <h4>Một thế giới sách tràn đầy cảm hứng.</h4>
+    <div class="mean-last">
+      <div *ngIf="!isLoggedIn">
+        <a routerLink="/login">
+          <img style="width: 50px; height: 50px; margin-left: 350px; margin-top: 40px;" src="assets/images/logo/shopping-cart.png" alt="#"/></a>
+      </div>
+      <div *ngIf="isLoggedIn">
+        <div>
+          <img style="width: 25px;height: 25px; margin-top: 0px; margin-left: 287px; margin-top: 15px" src="assets/images/logo/user.png">
+          <span style="color: #270082; margin-left: 5px; margin-top: 15px; float: left">{{userName}}</span>
+        </div>
+        <p style="margin-left: 200px" *ngIf="isLoggedIn"><a style="float: left; color: #270082; padding-left: 15px; ; margin-top: 15px" (click)="logout()"> | &nbsp; ĐĂNG XUẤT</a></p>
+      </div>
+    </div>
+    <div class = "cart" *ngIf="isLoggedIn">
+      <a routerLink="/cart">
+        <img style="width: 30px; height: 30px; margin-top: 15px; float: left" src="assets/images/logo/shopping-cart.png" alt="#"/>
+        <span style = "padding-left: 415px;" id = "total-quantity-cart-id">{{totalQuantityCart}}</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg bg-light" style = "padding: 0px">
+  <div class="container-fluid" style="background-color: orange; width: 100%">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 250px">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: #270082; font-size: 15px">
+            DANH MỤC SÁCH
+          </a>
+          <div class="dropdown-menu">
+            <a style = "color: #270082" class="dropdown-item" [routerLink]="['/book/listBookVietNam']">Văn học Việt Nam</a>
+            <a style = "color: #270082" class="dropdown-item" [routerLink]="['/book/listBookForeign']">Văn học nước ngoài</a>
+            <a style = "color: #270082" class="dropdown-item" [routerLink]="['/book/listBookChildren']">Thiếu nhi</a>
+            <a style = "color: #270082" class="dropdown-item" [routerLink]="['/book/listBookPolitics']">Thời sự - Chính trị</a>
+          </div>
+        </li>
+        <li class="nav-item" style="margin-left: 60px">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/book/list']" style="text-decoration: none; color: #270082; font-size: 15px">SÁCH NỔI BẬT</a>
+        </li>
+        <li class="nav-item" style="margin-left: 60px">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/book/listCombo']" style="text-decoration: none; color: #270082; font-size: 15px">CHƯƠNG TRÌNH KHUYẾN MÃI</a>
+        </li>
+        <li class="nav-item" style="margin-left: 60px">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/book/listPromotion']" style="text-decoration: none; color: #270082; font-size: 15px">GIẢM GIÁ ĐẶC BIỆT</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

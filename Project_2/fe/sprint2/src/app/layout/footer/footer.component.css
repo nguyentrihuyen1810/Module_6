@@ -1,0 +1,62 @@
+.footer {
+  clear: both;
+  background-color: #dcdada;
+  height: 160px;
+}
+
+.footerTopLeft {
+  width: 40%;
+  float: left;
+}
+
+.footerTopLeft p {
+  color: #270082;
+  margin-left: 300px;
+  float: left;
+}
+
+.footerTopCenter {
+  width: 20%;
+  float: left;
+}
+
+.footerTopCenter p {
+  color: #270082;
+  margin-left: 20px;
+}
+
+.footerTopRight img {
+  width: 30px;
+  height: 30px;
+  margin-top: 0px;
+}
+
+.contract1 {
+  float: left;
+  /*background-color: #6a67ce;*/
+  width: 40%;
+  height: 50px;
+}
+
+.contract1 img {
+  float: left;
+  margin-top: 20px;
+}
+
+.contract1 p {
+  float: left;
+  margin-top: 23px;
+  margin-left: 10px;
+}
+
+.footerBottom {
+  clear: both;
+  background-color: orange;
+  height: 70px;
+  width: 100%;
+}
+
+.footerBottom span br {
+  text-align: center;
+  color: #270082;
+}

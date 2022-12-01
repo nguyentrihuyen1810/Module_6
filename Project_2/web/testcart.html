@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<td class="quantity text-center">
+  <div class="quant-input ">
+    <div class="arrows">
+      <button class="arrow plus gradient"
+              [disabled]="cartBook.cartId.cartQuantity >= cartBook.bookId.bookQuantity"
+              (click)="addBook(cartBook)"><span>˄</span></button>
+      <button class="arrow minus gradient" *ngIf="cartBook.cartId.cartQuantity != 1"
+              (click)="subBook(cartBook)"><span>˅</span></button>
+      <!--                     button xoá-->
+      <button class="arrow minus gradient" *ngIf="cartBook.cartId.cartQuantity == 1"
+              (click)="showInfoCartDelete(cartBook)"
+              data-toggle="modal" data-target="#modalDeleteCart"><span class="ir"></span></button>
+    </div>
+    <input style = "width: 30px" class="txt-quantity" type="text" (change)="getQuantity($event.target, cartBook)"
+           [value]="cartBook.cartId.cartQuantity" readonly/>
+  </div>
+</td>
+</body>
+</html>

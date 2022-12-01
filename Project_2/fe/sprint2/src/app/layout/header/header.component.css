@@ -1,0 +1,118 @@
+.header1 {
+  margin-top: 10px;
+  background-color: white;
+}
+
+.header1 span {
+  color: #0E387C;
+  font-size: 15px;
+}
+
+.header2 {
+  clear: both;
+  height: 120px;
+  background-color: #dcdada;
+}
+
+.header2 img {
+  float: left;
+  margin-top: 0px;
+  margin-left: 40px;
+  width: 120px;
+  height: 120px;
+}
+
+h4 {
+  float: left;
+  margin-top: 40px;
+  color: #0E387C;
+  height: 50px;
+  /*background-color: #4b7838;*/
+}
+
+.cart img {
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  margin-left: 400px;
+}
+
+.search {
+  padding-top: 116px;
+}
+
+.search a {
+  position: relative;
+  background: #270082;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  padding: 10px 10px;
+  transition: 0.5s;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.search a:hover {
+  background: #270082;
+  color: white;
+  letter-spacing: 0.25em;
+  box-shadow: 0 0 35px deepskyblue;
+}
+
+.search a:before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: #270082;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.search a span {
+  position: relative;
+  z-index: 1;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.search a i {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.search a i::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 80%;
+  width: 8px;
+  height: 2px;
+  background: white;
+  transform: translateX(-50%) skewX(325deg);
+  transition: 0.5s;
+}
+
+.search a:hover i::before {
+  width: 20px;
+  left: 20%;
+}
+
+.search a i::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  width: 8px;
+  height: 2px;
+  background: white;
+  transform: translateX(-50%) skewX(325deg);
+  transition: 0.5s;
+}
+
+.search a:hover i::after {
+  width: 20px;
+  left: 80%;
+}

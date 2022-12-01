@@ -1,0 +1,10 @@
+<h3 style="color: #270082; text-align: center; margin-top: 50px; margin-bottom: 20px">THIẾU NHI</h3>
+<div class="card" style = "border: 3px solid orange" *ngFor = "let book of bookList">
+  <a style="text-decoration: none" [routerLink]="['/book/detail',book.bookId]">
+  <img src="assets/images/book/{{book.bookImage}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title" style="color: #270082">{{book.bookName}} - {{book.bookAuthorId.authorName}}</h5>
+    <p class="card-text" style="color: #270082">{{book.bookPrice|currency:'VND'}}</p>
+  </div>
+  </a>
+</div>
